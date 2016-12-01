@@ -1,0 +1,23 @@
+{
+  "name": "se_16_171536_174173_174473_p",
+  "version": "1.0.0",
+  "description": "proggetto ing. software 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaternoD/SE_16_171536_174173_174473_P.git"
+  },
+  "author": "171536 174173 174473",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaternoD/SE_16_171536_174173_174473_P/issues"
+  },
+  "homepage": "https://github.com/PaternoD/SE_16_171536_174173_174473_P#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "util": "^0.10.3"
+  }
+}
