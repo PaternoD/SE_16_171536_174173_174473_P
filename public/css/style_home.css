@@ -1,0 +1,9 @@
+table {
+  table-layout: auto;
+  alignment-adjust: central;
+  align-items: center;
+}
+
+body{
+	align-content:center;
+}
