@@ -7,7 +7,6 @@
     
     <body>
     <p>
-        \\tabella di 2 colonne inizialmente vuota da generare dinamicamente don javascript lato server
         <main id="main"> 
             <br>
             <label id="id_titolo"><strong> TITOLO </strong></label>

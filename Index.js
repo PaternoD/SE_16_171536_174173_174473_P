@@ -140,75 +140,20 @@ app.post('/registra1',function(request,response){
 app.post('/registra2',function(request,response){
 	if(typeof request.body !== 'undefined' && request.body){
         
-        //Nuovo user per acquisire i dati dalla form
-		var user = new lib.User();
-        //Flag per il controllo dell'errore
-		var error = false;
+        //prelevo l'ultimo user dall'array
+		var user = lib.getLast();
         
-		if(typeof request.body.nome !== 'undefined' && request.body.nome){
-			user.nome=request.body.nome;
-		}else{
-			error = true;
-		}
-		if(typeof request.body.cognome !== 'undefined' && request.body.cognome){
-			user.cognome=request.body.cognome;
-		}else{
-			error = true;
-		}
-		if(typeof request.body.data !== 'undefined' && request.body.data){
-			user.data=request.body.data;
-		}else{
-			error = true;
-		}
-		if(typeof request.body.indirizzo !== 'undefined' && request.body.indirizzo){
-			user.indirizzo=request.body.indirizzo;
-		}else{
-			error = true;
-		}
-        if(typeof request.body.cap !== 'undefined' && request.body.cap){
-			user.cap=parseInt(request.body.cap);
-		}else{
-			error = true;
-		}
-		if(typeof request.body.comune !== 'undefined' && request.body.comune){
-			user.comune=request.body.comune;
-		}else{
-			error = true;
-		}
-		if(typeof request.body.provincia !== 'undefined' && request.body.provincia){
-			user.provincia=request.body.provincia;
-		}else{
-			error = true;
-		}
-		if(typeof request.body.tel !== 'undefined' && request.body.tel){
-			user.n_tel=parseInt(request.body.tel);
-		}else{
-			error = true;
-		}
-        if(typeof request.body.email !== 'undefined' && request.body.email){
-			user.email=request.body.email;
-		}else{
-			error = true;
-		}
-        if(typeof request.body.cf !== 'undefined' && request.body.cf){
-			user.cf=parseInt(request.body.cf);
-		}else{
-			error = true;
-		}
+        user.peso=parseInt(request.body.peso);
+        user.altezza=parseInt(request.body.altezza);
+        user.sesso=request.body.sesso;
+        user.into=request.body.into;
         
-        //Se uno dei capi della form non è stato completato genero un'errore.
-		if(error){
-			response.writeHead(409,{});
-			response.end("Incorrect data sent with the request");
-		}else{
-			lib.addUser(user);		//Aggiunta dell'user alla lista
-			bind.toFile('tpl/reg_2.tpl', {
-            },
+        lib.addUser(user);		//Aggiunta dell'user alla lista
+        bind.toFile('tpl/benvenuto.tpl', {},
             function(data){
                 response.writeHead(200,{'Content-Type':'text/html'});
                 response.end(data);
             });
-		}	
 	}else{
 		console.log("Request body not defined");
 	}

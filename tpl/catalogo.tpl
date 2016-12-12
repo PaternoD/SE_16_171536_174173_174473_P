@@ -1,6 +1,3 @@
-<!-- riepilogo di tutto il catalogo dei pasti disponibili  -->
-<!-- in javascript bisogna creare la tabella dinabica deivata dal database, bisogna calbiare il valore delle label e il nome del bottone quando viene generata la pagina  -->
-
 <!DOCTYPE html>
 <html>
 	<head>
