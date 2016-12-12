@@ -1,6 +1,3 @@
-<!-- changeTextInLabel(label, TestoDaCambiare); per cambiare il testo nella label di modo da creare un solo template per tutte le pagine di odine (primi, secondi, contorni, frutta e dolci e riepilogo) -->
-<!-- in javascript bisogna creare la tabella dinabica deivata dal database, bisogna calbiare il valore delle label e il nome del bottone quando viene generata la pagina  -->
-
 <!DOCTYPE html>
 <html>
 	<head>

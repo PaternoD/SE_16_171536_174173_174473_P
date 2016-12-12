@@ -1,3 +1,11 @@
+.hidden{
+	display:none
+}
+
+.visible{
+	display:block
+}
+
 table {
   table-layout: auto;
   alignment-adjust: central;

@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 **/
 app.get('/', function(req, res) {
 	//bind to template
-	bind.toFile('tpl/reg_1.tpl', {}, 
+	bind.toFile('tpl/home.tpl', {}, 
     function(data){
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.end(data);
@@ -33,7 +33,21 @@ app.get('/', function(req, res) {
 *   GET HOME
 **/
 app.post('/home',function(request,response){
-    bind.toFile('tpl/home.tpl', {},
+    bind.toFile('tpl/home.tpl', {
+                    open : true
+                },
+                function(data){
+                response.writeHead(200,{'Content-Type':'text/html'});
+                response.end(data);
+            });
+});
+
+/**
+*   GET pagina di registrazione
+**/
+app.post('/registra',function(request,response){
+    visible = false;
+    bind.toFile('tpl/reg_1.tpl', {},
                 function(data){
                 response.writeHead(200,{'Content-Type':'text/html'});
                 response.end(data);
@@ -198,6 +212,28 @@ app.post('/registra2',function(request,response){
 	}else{
 		console.log("Request body not defined");
 	}
+});
+
+/**
+*   GET pagina di benvenuto
+**/
+app.post('/benvenuto',function(request,response){
+    bind.toFile('tpl/benvenuto.tpl', {},
+                function(data){
+                response.writeHead(200,{'Content-Type':'text/html'});
+                response.end(data);
+            });
+});
+
+/**
+*   GET pagina di benvenuto
+**/
+app.post('/prenotaGiorni',function(request,response){
+    bind.toFile('tpl/ordine_1.tpl', {},
+                function(data){
+                response.writeHead(200,{'Content-Type':'text/html'});
+                response.end(data);
+            });
 });
 
 //Set the server to listen on a specific port
