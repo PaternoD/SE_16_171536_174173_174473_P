@@ -1,8 +1,9 @@
 var express = require('express');
 var bind = require('bind');
 var bodyParser = require('body-parser');
-//Aggiungo una libreria di supporto per la gestione degli users
+//Aggiungo una libreria di supporto per la gestione degli users e dei pasti
 var lib = require('./lib/lib.js');
+var libPasti = require('./lib/lib_pasti.js');
 
 //instantiate express
 var app = express();
@@ -13,10 +14,10 @@ app.set('port', (process.env.PORT || 1337));
 //set the server to respond to a file request
 app.use('/public',express.static(__dirname+'/public'));
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //set Body-parser on the requests
 app.use(bodyParser.urlencoded({ extended: false }));
-=======
+//=======
 app.set('port', (process.env.PORT || 5000));
 
 /**
@@ -54,7 +55,7 @@ app.get('/select/', function(request, response)
   	});
 
 });
->>>>>>> origin/dev
+//>>>>>>> origin/dev
 
 //create a server
 /**
@@ -105,7 +106,7 @@ app.post('/registra1',function(request,response){
         //Flag per il controllo dell'errore
 		var error = false;
         
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		if(typeof request.body.nome !== 'undefined' && request.body.nome){
 			user.nome=request.body.nome;
 		}else{
@@ -198,7 +199,7 @@ app.post('/registra2',function(request,response){
 	}else{
 		console.log("Request body not defined");
 	}
-=======
+//=======
         //Cancellazione tabella utenti se esistente
         client.query('drop table if exists utenti cascade', function(err, result){
             done();
@@ -260,8 +261,6 @@ app.post('/registra2',function(request,response){
            }
         });
         
-    });
-
 });
 
 
@@ -306,11 +305,11 @@ app.get('/add_utente/', function(request, response)
 		});
   	});
 
->>>>>>> origin/dev
+//>>>>>>> origin/dev
 });
 
 /**
-*   GET pagina di benvenuto
+*   POST pagina di benvenuto
 **/
 app.post('/benvenuto',function(request,response){
     bind.toFile('tpl/benvenuto.tpl', {},
@@ -321,15 +320,159 @@ app.post('/benvenuto',function(request,response){
 });
 
 /**
-*   GET pagina di benvenuto
+*   POST pagina di prenotazione del giorno : Lunedì
 **/
 app.post('/prenotaGiorni',function(request,response){
-    bind.toFile('tpl/ordine_1.tpl', {},
-                function(data){
-                response.writeHead(200,{'Content-Type':'text/html'});
-                response.end(data);
-            });
+    response.sendFile(__dirname + '/html/ordinelunedi.html');
+    
 });
+
+/**
+*   POST pagina di prenotazione del giorno : Martedì
+**/
+app.post('/prenotaGiorno2',function(request,response){
+    response.sendFile(__dirname + '/html/ordineMartedi.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Lunedì";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Mercoledì
+**/
+app.post('/prenotaGiorno3',function(request,response){
+    response.sendFile(__dirname + '/html/ordineMercoledi.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Martedì";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Giovedì
+**/
+app.post('/prenotaGiorno4',function(request,response){
+    response.sendFile(__dirname + '/html/ordineGiovedi.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Mercoledì";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Venerdì
+**/
+app.post('/prenotaGiorno5',function(request,response){
+    response.sendFile(__dirname + '/html/ordineVenerdi.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Giovedì";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Sabato
+**/
+app.post('/prenotaGiorno6',function(request,response){
+    response.sendFile(__dirname + '/html/ordineSabato.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Venerdì";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Domenica
+**/
+app.post('/prenotaGiorno7',function(request,response){
+    response.sendFile(__dirname + '/html/ordineDomenica.html');
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Sabato";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+
+    console.log("Sei nella pagina di salvataggio sabato.")
+});
+
+/**
+*   POST pagina di prenotazione del giorno : Resoconto del Menù
+**/
+app.post('/resocontoMenu',function(request,response){
+    var menu = new libPasti.Menu();
+    // Salvo i piatti scelti il giorno precendente
+    menu.giorno = "Domenica";
+    menu.primo = request.body.primi;
+    menu.secondo = request.body.secondi;
+    menu.dessert = request.body.dessert;
+    libPasti.addMenu(menu);
+
+    bind.toFile('tpl/resocontoMenu.tpl', {
+
+        lunedi_primo: libPasti.arrayMenu[0].primo,
+        lunedi_secondo: libPasti.arrayMenu[0].secondo,
+        lunedi_dessert: libPasti.arrayMenu[0].dessert,
+
+        martedi_primo: libPasti.arrayMenu[1].primo,
+        martedi_secondo: libPasti.arrayMenu[1].secondo,
+        martedi_dessert: libPasti.arrayMenu[1].dessert,
+
+        mercoledi_primo: libPasti.arrayMenu[2].primo,
+        mercoledi_secondo: libPasti.arrayMenu[2].secondo,
+        mercoledi_dessert: libPasti.arrayMenu[2].dessert,
+
+        giovedi_primo: libPasti.arrayMenu[3].primo,
+        giovedi_secondo: libPasti.arrayMenu[3].secondo,
+        giovedi_dessert: libPasti.arrayMenu[3].dessert,
+
+        venerdi_primo: libPasti.arrayMenu[4].primo,
+        venerdi_secondo: libPasti.arrayMenu[4].secondo,
+        venerdi_dessert: libPasti.arrayMenu[4].dessert,
+
+        sabato_primo: libPasti.arrayMenu[5].primo,
+        sabato_secondo: libPasti.arrayMenu[5].secondo,
+        sabato_dessert: libPasti.arrayMenu[5].dessert,
+
+        domenica_primo: libPasti.arrayMenu[6].primo,
+        domenica_secondo: libPasti.arrayMenu[6].secondo,
+        domenica_dessert: libPasti.arrayMenu[6].dessert
+
+        },
+        function(data){
+            response.writeHead(200,{'Content-Type':'text/html'});
+            response.end(data);
+        });
+
+    console.log("Sei nella pagina di salvataggio domenica.");
+    console.log(libPasti.arrayMenu);
+
+});
+
+app.get('/confermaMenu', function(request, response){
+    response.sendFile(__dirname + '/html/confermaOrdine.html');
+});
+
+
+
+
 
 //Set the server to listen on a specific port
 app.listen('1337','127.0.0.1');
