@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/PaternoD/SE_16_171536_174173_174473_P#readme",
   "dependencies": {
+    "bind": "^0.1.7",
     "express": "^4.14.0",
     "util": "^0.10.3"
   }
