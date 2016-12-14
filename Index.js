@@ -175,8 +175,9 @@ app.post('/benvenuto',function(request,response){
 /**
 *   POST pagina di prenotazione del giorno : Lunedì
 **/
-app.post('/prenotaGiorni',function(request,response){
+app.get('/prenotaGiorni',function(request,response){
     response.sendFile(__dirname + '/html/ordinelunedi.html');
+    console.log(__dirname);
     
 });
 
