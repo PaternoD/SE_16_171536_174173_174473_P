@@ -322,4 +322,8 @@ app.get('/confermaMenu', function(request, response){
 
 
 //Set the server to listen on a specific port
-app.listen('1337','127.0.0.1');
+//app.listen('1337','127.0.0.1');
+app.listen(process.env.PORT || 1337, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
