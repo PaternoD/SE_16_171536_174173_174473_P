@@ -9,7 +9,7 @@
     
     <body>
         <img src="public/immage/sfondo_2.jpg" width="880" height="240" alt=""/><br>
-        <form id = "registra" method="get">
+        <form id = "registra" method="POST">
             <table width="200" border="1">
               <tbody>
                 <tr>
